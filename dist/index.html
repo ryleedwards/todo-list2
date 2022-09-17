@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List 2</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/039b0c6e1b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="./main.js"></script>
+  </head>
+  <body>
+    <div class="top-nav">
+      <i class="fa-solid fa-bars" id="menu"></i>
+      <i class="fa-solid fa-house" id="home"></i>
+    </div>
+    <div class="main">
+      <div class="sidebar hidden">
+        <ul class="nav-list">
+          <li id="inbox">
+            <i class="fa-solid fa-inbox"></i>
+            <span class="links-name">Inbox</span>
+          </li>
+          <li id="today">
+            <i class="fa-regular fa-calendar"></i>
+            <span class="links-name">Today</span>
+          </li>
+          <li id="upcoming">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span class="links-name">Upcoming</span>
+          </li>
+        </ul>
+        <div class="sidebar-projects">
+          <i class="fa-solid fa-folder-open"></i>
+          <span id="project-section-title">Projects</span>
+          <button class="btn addProject">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <ul id="project-list">
+            <li class="project">Default</li>
+          </ul>
+        </div>
+      </div>
+      <div id="content">
+        <div id="project-view">
+          <span class="project-title">*placeholder-project*</span>
+          <button class="btn addTask">Add Task</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

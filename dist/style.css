@@ -1,0 +1,254 @@
+:root {
+  /* CSS HEX */
+  --primary-dark: #1d3557;
+  --primary-medium: #457b9d;
+  --primary-light: #a8dadc;
+  --secondary-light: #f1faee;
+  --secondary-dark: #111f32;
+  --error: #bc4749ff;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--primary-dark);
+  color: var(--secondary-light);
+}
+
+.form-entry {
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.top-nav {
+  min-width: 100vw;
+  min-height: 36px;
+  background-color: var(--secondary-dark);
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+}
+
+.top-nav > i {
+  color: whitesmoke;
+  padding: 4px;
+  margin: 4px;
+  border-radius: 4px;
+}
+
+.top-nav > i:hover {
+  background-color: var(--primary-dark);
+}
+
+.main {
+  display: flex;
+}
+
+.sidebar {
+  height: 100%;
+  width: 240px;
+  background-color: var(--secondary-dark);
+  color: var(--secondary-light);
+  min-height: 100vh;
+  transition: width 0.5s;
+}
+
+.hidden {
+  visibility: hidden;
+  width: 0px;
+}
+
+.sidebar > ul {
+  list-style: none;
+}
+
+.sidebar > ul > li {
+  margin: 4px 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 1.25em;
+}
+
+.sidebar > ul > li:hover {
+  background-color: var(--primary-light);
+  color: var(--secondary-dark);
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+/* Use content div to center */
+#content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Begin Project View with tasks populated */
+
+#project-view {
+  height: 480px;
+  width: 1080px;
+  border-radius: 8px;
+  background-color: var(--secondary-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  padding: 8px;
+  font-weight: bold;
+  font-size: 1.75rem;
+  height: 48px;
+  background-color: var(--primary-medium);
+  border: solid 1px var(--secondary-dark);
+  border-radius: 4px;
+}
+
+.task-container {
+  display: flex;
+  align-items: center;
+}
+
+.task-container > * {
+  flex-grow: 1;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.task-dueDate {
+  display: block;
+  text-align: center;
+  flex-grow: 0;
+}
+
+.task-container > span {
+  width: 250px;
+}
+
+.btn.addTask {
+  background-color: var(--primary-light);
+  border: none;
+  border-radius: 8px;
+  width: 25%;
+  height: 24px;
+  margin-top: 24px;
+  align-self: center;
+}
+
+.btn.addTask:hover {
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+  cursor: pointer;
+}
+
+.task-complete {
+  max-width: 100px;
+}
+
+/* Begin sidebar */
+
+.sidebar-projects {
+  margin: 8px;
+  padding: 16px;
+  white-space: nowrap;
+  border-radius: 4px;
+  border: solid var(--secondary-dark) 1px;
+}
+
+#project-list {
+  margin-top: 8px;
+}
+
+.btn.addProject {
+  border: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background-color: var(--primary-dark);
+  color: white;
+}
+
+.btn.addProject:hover {
+  background-color: white;
+  color: var(--primary-dark);
+}
+
+#project-list > li {
+  list-style: none;
+  margin-left: 16px;
+}
+
+.add-task-form {
+  position: absolute;
+  height: 33vh;
+  width: 33vw;
+  background-color: var(--primary-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 4px;
+  border: solid 4px var(--secondary-light);
+}
+
+.btn.submit-task {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--secondary-dark);
+  color: var(--secondary-light);
+  font-weight: bold;
+}
+
+.btn.submit-task:hover {
+  background-color: var(--secondary-light);
+  color: var(--secondary-dark);
+  cursor: pointer;
+}
+
+.exit-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 4px;
+  font-size: 1.5rem;
+  color: red;
+}
+
+.exit-form:hover {
+  color: lightcoral;
+  cursor: pointer;
+}
+
+.task-container {
+  border: solid 2px var(--primary-light);
+  border-radius: 8px;
+  margin: 4px;
+}
+
+.task-container > button {
+  flex-grow: 0;
+  margin: 16px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.task-container > button:hover {
+  color: var(--secondary-light);
+  background-color: var(--primary-dark);
+}
