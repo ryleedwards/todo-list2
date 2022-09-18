@@ -1,10 +1,10 @@
+import dom from "./modules/dom";
 import { Project } from "./modules/project";
 import { Task } from "./modules/task";
 
-let task = new Task("MyTask", "description of my task", "01/02/2001", "high");
+const testProject = new Project("Test Project");
+testProject.addTask(
+  new Task("Test Task", "Test Description", "Test DueDate", "High")
+);
 
-let project = new Project("MyProject");
-
-//project.addTask(new Task("task1", "description1", "01/01/2020", "low"));
-
-console.log(project);
+dom.showTasks(testProject);
