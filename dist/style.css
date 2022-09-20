@@ -252,3 +252,7 @@ body {
   color: var(--secondary-light);
   background-color: var(--primary-dark);
 }
+
+.error-label {
+  color: var(--error);
+}

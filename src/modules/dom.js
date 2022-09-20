@@ -2,6 +2,7 @@ import { Task } from "./task";
 import { Project } from "./project";
 
 const dom = (() => {
+  let currentProject = "";
   const menu = document.getElementById("menu");
   const home = document.getElementById("home");
   const btnAddTask = document.querySelector(".btn.addTask");
@@ -13,6 +14,7 @@ const dom = (() => {
     if (!(project instanceof Project)) {
       throw new Error("dom.showTasks must be passed a Project object");
     }
+    currentProject = project;
     project.getTasks().forEach((task) => {
       projectView.appendChild(_showTask(task));
     });
@@ -54,8 +56,9 @@ const dom = (() => {
 
   function _createForm(method, action, classList) {
     const form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", action);
+    // form.setAttribute("method", method);
+    // form.setAttribute("action", action);
+
     classList.forEach((argClass) => {
       form.classList.add(argClass);
     });
@@ -63,7 +66,7 @@ const dom = (() => {
   }
 
   function showCreateTaskForm() {
-    const addTaskForm = _createForm("get", "#", ["add-task-form"]);
+    const addTaskForm = _createForm("#", "#", ["add-task-form"]);
 
     // task title entry
     const divTitle = document.createElement("div");
@@ -74,7 +77,6 @@ const dom = (() => {
     const inputTitle = document.createElement("input");
     inputTitle.setAttribute("type", "text");
     inputTitle.setAttribute("name", "input-title");
-    inputTitle.setAttribute("required", "true");
     divTitle.appendChild(labelTitle);
     divTitle.appendChild(inputTitle);
     addTaskForm.appendChild(divTitle);
@@ -88,7 +90,6 @@ const dom = (() => {
     const inputDescription = document.createElement("input");
     inputDescription.setAttribute("type", "text");
     inputDescription.setAttribute("name", "input-description");
-    inputDescription.setAttribute("required", "true");
     divDescription.appendChild(labelDescription);
     divDescription.appendChild(inputDescription);
     addTaskForm.appendChild(divDescription);
@@ -139,9 +140,40 @@ const dom = (() => {
     divBtnSubmit.appendChild(inputBtnSubmit);
     addTaskForm.appendChild(divBtnSubmit);
 
+    addSubmitListener();
+
     // final append to content
     content.appendChild(addTaskForm);
     projectView.classList.toggle("form-entry");
+
+    function addSubmitListener() {
+      inputBtnSubmit.addEventListener("click", (e) => {
+        e.preventDefault();
+        // check for required inputs
+        // require task title
+        if (inputTitle.value == "") {
+          const labelRequiredField = document.createElement("label");
+          labelRequiredField.classList.add("error-label");
+          labelRequiredField.textContent =
+            "Please enter this field before submitting";
+          if (divTitle.lastChild.classList[0] != "error-label") {
+            divTitle.appendChild(labelRequiredField);
+            return;
+          }
+          return;
+        }
+        // store input values
+
+        currentProject.addTask(
+          new Task(
+            inputTitle.value,
+            inputDescription.value,
+            inputDueDate.value,
+            selectPriority.value
+          )
+        );
+      });
+    }
   }
 
   return { showTasks, showCreateTaskForm };
