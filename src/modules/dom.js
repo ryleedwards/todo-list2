@@ -172,6 +172,8 @@ const dom = (() => {
         );
         currentProject.addTask(task);
         projectView.appendChild(_showTask(task));
+        content.removeChild(addTaskForm);
+        projectView.classList.toggle("form-entry");
       });
     }
   }
