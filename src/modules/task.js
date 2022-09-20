@@ -44,4 +44,6 @@ export class Task {
     // TODO: Potential need for validation on priority?
     this._priority = newPriority;
   }
+
+  static priorities = ["High", "Medium", "Low"];
 }

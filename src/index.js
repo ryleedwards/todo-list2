@@ -1,4 +1,5 @@
 import dom from "./modules/dom";
+import listeners from "./modules/listeners";
 import { Project } from "./modules/project";
 import { Task } from "./modules/task";
 
@@ -8,3 +9,5 @@ testProject.addTask(
 );
 
 dom.showTasks(testProject);
+
+listeners.init();
