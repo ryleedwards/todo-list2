@@ -164,17 +164,19 @@ const dom = (() => {
         }
         // store input values
 
-        currentProject.addTask(
-          new Task(
-            inputTitle.value,
-            inputDescription.value,
-            inputDueDate.value,
-            selectPriority.value
-          )
+        const task = new Task(
+          inputTitle.value,
+          inputDescription.value,
+          inputDueDate.value,
+          selectPriority.value
         );
+        currentProject.addTask(task);
+        projectView.appendChild(_showTask(task));
       });
     }
   }
+
+  function clearTasks() {}
 
   return { showTasks, showCreateTaskForm };
 })();
