@@ -92,6 +92,7 @@ const dom = (() => {
     divDueDate.appendChild(inputDueDate);
     addTaskForm.appendChild(divDueDate);
 
+    // priority entry
     const divPriority = document.createElement("div");
     divPriority.classList.add("form-input");
     const labelPriority = document.createElement("label");
