@@ -79,6 +79,20 @@ const dom = (() => {
     divTitle.appendChild(inputTitle);
     addTaskForm.appendChild(divTitle);
 
+    // task description entry
+    const divDescription = document.createElement("div");
+    divDescription.classList.add("form-input");
+    const labelDescription = document.createElement("label");
+    labelDescription.setAttribute("for", "input-description");
+    labelDescription.textContent = "Description:";
+    const inputDescription = document.createElement("input");
+    inputDescription.setAttribute("type", "text");
+    inputDescription.setAttribute("name", "input-description");
+    inputDescription.setAttribute("required", "true");
+    divDescription.appendChild(labelDescription);
+    divDescription.appendChild(inputDescription);
+    addTaskForm.appendChild(divDescription);
+
     // due date entry
     const divDueDate = document.createElement("div");
     divDueDate.classList.add("form-input");

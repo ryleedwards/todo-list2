@@ -190,7 +190,7 @@ body {
 
 .add-task-form {
   position: absolute;
-  height: 33vh;
+  padding: 24px 0px;
   width: 33vw;
   background-color: var(--primary-dark);
   display: flex;
