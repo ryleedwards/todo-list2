@@ -116,6 +116,10 @@ const dom = (() => {
     const selectPriority = document.createElement("select");
     selectPriority.setAttribute("name", "select-priority");
     selectPriority.setAttribute("id", "select-priority");
+    /*TODO add placeholder for "select priority" that is optional and can
+    submit null value in task creation (users do not have to assign a priority) 
+    
+    Use 'selected,' 'disabled', 'hidden' attributes in option tag */
     Task.priorities.forEach((priority) => {
       const option = document.createElement("option");
       option.setAttribute("value", priority);
