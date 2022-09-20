@@ -11,3 +11,13 @@ testProject.addTask(
 dom.showTasks(testProject);
 
 listeners.init();
+
+const btnTest = document.createElement("button");
+btnTest.innerText = "TEST";
+const topnav = document.querySelector(".top-nav");
+console.log(topnav);
+topnav.appendChild(btnTest);
+
+btnTest.addEventListener("click", () => {
+  dom.clearTasks();
+});

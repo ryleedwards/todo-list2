@@ -178,9 +178,14 @@ const dom = (() => {
     }
   }
 
-  function clearTasks() {}
+  function clearTasks() {
+    let tasks = document.querySelectorAll(".task-container");
+    tasks.forEach((task) => {
+      projectView.removeChild(task);
+    });
+  }
 
-  return { showTasks, showCreateTaskForm };
+  return { showTasks, showCreateTaskForm, clearTasks };
 })();
 
 export default dom;
