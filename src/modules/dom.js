@@ -208,7 +208,12 @@ const dom = (() => {
     content.appendChild(addProjectForm);
     projectView.classList.toggle("form-entry");
 
-    function addSubmitListener() {}
+    function addSubmitListener() {
+      inputBtnSubmit.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log(inputTitle.value);
+      });
+    }
   }
 
   function clearTasks() {
