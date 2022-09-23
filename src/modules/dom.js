@@ -180,6 +180,35 @@ const dom = (() => {
 
   function showCreateProjectForm() {
     const addProjectForm = _createForm("#", "#", ["add-project-form", "form"]);
+    // project title entry
+    const divTitle = document.createElement("div");
+    divTitle.classList.add("form-input");
+    const labelTitle = document.createElement("label");
+    labelTitle.setAttribute("for", "input-title");
+    labelTitle.textContent = "Title:";
+    const inputTitle = document.createElement("input");
+    inputTitle.setAttribute("type", "text");
+    inputTitle.setAttribute("name", "input-title");
+    divTitle.appendChild(labelTitle);
+    divTitle.appendChild(inputTitle);
+    addProjectForm.appendChild(divTitle);
+
+    // submit button
+    const divBtnSubmit = document.createElement("div");
+    divBtnSubmit.classList.add("form-input");
+    const inputBtnSubmit = document.createElement("input");
+    inputBtnSubmit.setAttribute("type", "submit");
+    inputBtnSubmit.setAttribute("value", "Submit");
+    inputBtnSubmit.classList.add("btn", "submit-project");
+    divBtnSubmit.appendChild(inputBtnSubmit);
+    addProjectForm.appendChild(divBtnSubmit);
+
+    addSubmitListener();
+
+    content.appendChild(addProjectForm);
+    projectView.classList.toggle("form-entry");
+
+    function addSubmitListener() {}
   }
 
   function clearTasks() {
@@ -189,7 +218,7 @@ const dom = (() => {
     });
   }
 
-  return { showTasks, showCreateTaskForm, clearTasks };
+  return { showTasks, showCreateTaskForm, showCreateProjectForm, clearTasks };
 })();
 
 export default dom;
