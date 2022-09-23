@@ -66,7 +66,7 @@ const dom = (() => {
   }
 
   function showCreateTaskForm() {
-    const addTaskForm = _createForm("#", "#", ["add-task-form"]);
+    const addTaskForm = _createForm("#", "#", ["add-task-form", "form"]);
 
     // task title entry
     const divTitle = document.createElement("div");
@@ -176,6 +176,10 @@ const dom = (() => {
         projectView.classList.toggle("form-entry");
       });
     }
+  }
+
+  function showCreateProjectForm() {
+    const addProjectForm = _createForm("#", "#", ["add-project-form", "form"]);
   }
 
   function clearTasks() {

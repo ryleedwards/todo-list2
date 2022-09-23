@@ -17,13 +17,23 @@ const listeners = (() => {
 
   function _initHome() {
     const btnHome = document.getElementById("home");
-    btnHome.addEventListener("click", () => {});
+    btnHome.addEventListener("click", () => {
+      //TODO
+    });
+  }
+
+  function _initAddProject() {
+    const btnAddProject = document.querySelector(".btn.addProject");
+    btnAddProject.addEventListener("click", () => {
+      dom.showCreateProjectForm();
+    });
   }
 
   function init() {
     _initAddTask();
     _initMenu();
     _initHome();
+    _initAddProject();
   }
 
   return { init };

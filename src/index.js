@@ -17,7 +17,6 @@ dom.showTasks(testProject);
 const btnTest = document.createElement("button");
 btnTest.innerText = "TEST";
 const topnav = document.querySelector(".top-nav");
-console.log(topnav);
 topnav.appendChild(btnTest);
 
 btnTest.addEventListener("click", () => {
