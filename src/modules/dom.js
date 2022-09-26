@@ -5,9 +5,6 @@ import listeners from "./listeners";
 
 const dom = (() => {
   let currentProject = "";
-  const menu = document.getElementById("menu");
-  const home = document.getElementById("home");
-  const btnAddTask = document.querySelector(".btn.addTask");
   const projectTitle = document.querySelector(".project-title");
   const projectView = document.getElementById("project-view");
   const content = document.getElementById("content");
