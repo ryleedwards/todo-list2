@@ -299,7 +299,7 @@ Use 'selected,' 'disabled', 'hidden' attributes in option tag */
       option.textContent = priority;
       selectPriority.appendChild(option);
     });
-    let prioIndex = Task.priorities.indexOf(task.priority);
+    const prioIndex = Task.priorities.indexOf(task.priority);
     selectPriority.selectedIndex = prioIndex;
     divPriority.appendChild(selectPriority);
     editTaskForm.appendChild(divPriority);
