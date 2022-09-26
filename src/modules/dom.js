@@ -45,6 +45,7 @@ const dom = (() => {
     //delete button
     const deleteTask = document.createElement("button");
     deleteTask.classList.add("delete-task", "fa-solid", "fa-trash-can");
+    listeners.initRemoveTask(deleteTask);
     //append to task container
     taskContainer.appendChild(checkbox);
     taskContainer.appendChild(titleSpan);
@@ -350,6 +351,13 @@ Use 'selected,' 'disabled', 'hidden' attributes in option tag */
     }
   }
 
+  function removeTask(taskIndex) {
+    // note that taskIndex will be inflated by 2 vs its projects array location
+    const removedTaskContainer = projectView.children[taskIndex];
+    projectView.removeChild(removedTaskContainer);
+    currentProject.removeTask(taskIndex - 2);
+  }
+
   function clearTasks() {
     let tasks = document.querySelectorAll(".task-container");
     tasks.forEach((task) => {
@@ -388,6 +396,7 @@ Use 'selected,' 'disabled', 'hidden' attributes in option tag */
     clearTasks,
     showProject,
     refreshSidebarProjects,
+    removeTask,
   };
 })();
 

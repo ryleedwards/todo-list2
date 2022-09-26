@@ -39,6 +39,16 @@ const listeners = (() => {
     });
   }
 
+  function initRemoveTask(btn) {
+    btn.addEventListener("click", () => {
+      const taskContainer = btn.parentNode;
+      const index = Array.from(taskContainer.parentNode.children).indexOf(
+        taskContainer
+      );
+      dom.removeTask(index);
+    });
+  }
+
   function initEditTask(btn) {
     btn.addEventListener("click", () => {
       const taskContainer = btn.parentNode;
@@ -59,7 +69,7 @@ const listeners = (() => {
     _initAddProject();
   }
 
-  return { init, initSidebarProject, initEditTask };
+  return { init, initSidebarProject, initEditTask, initRemoveTask };
 })();
 
 export default listeners;
