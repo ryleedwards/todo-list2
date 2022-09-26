@@ -41,6 +41,7 @@ const dom = (() => {
     //edit button
     const editTask = document.createElement("button");
     editTask.classList.add("edit-task", "fa-solid", "fa-pen-to-square");
+    listeners.initEditTask(editTask);
     //delete button
     const deleteTask = document.createElement("button");
     deleteTask.classList.add("delete-task", "fa-solid", "fa-trash-can");
@@ -232,6 +233,123 @@ const dom = (() => {
     }
   }
 
+  function showEditTaskForm(taskIndex) {
+    const task = currentProject.getTasks()[taskIndex];
+    const editTaskForm = _createForm("#", "#", ["edit-task-form", "form"]);
+
+    // task title entry
+    const divTitle = document.createElement("div");
+    divTitle.classList.add("form-input");
+    const labelTitle = document.createElement("label");
+    labelTitle.setAttribute("for", "input-title");
+    labelTitle.textContent = "Title:";
+    const inputTitle = document.createElement("input");
+    inputTitle.setAttribute("type", "text");
+    inputTitle.setAttribute("name", "input-title");
+    inputTitle.value = task.title;
+    divTitle.appendChild(labelTitle);
+    divTitle.appendChild(inputTitle);
+    editTaskForm.appendChild(divTitle);
+
+    // task description entry
+    const divDescription = document.createElement("div");
+    divDescription.classList.add("form-input");
+    const labelDescription = document.createElement("label");
+    labelDescription.setAttribute("for", "input-description");
+    labelDescription.textContent = "Description:";
+    const inputDescription = document.createElement("input");
+    inputDescription.setAttribute("type", "text");
+    inputDescription.setAttribute("name", "input-description");
+    inputDescription.value = task.description;
+    divDescription.appendChild(labelDescription);
+    divDescription.appendChild(inputDescription);
+    editTaskForm.appendChild(divDescription);
+
+    // due date entry
+    const divDueDate = document.createElement("div");
+    divDueDate.classList.add("form-input");
+    const labelDueDate = document.createElement("label");
+    labelDueDate.setAttribute("for", "input-dueDate");
+    labelDueDate.textContent = "Due Date:";
+    const inputDueDate = document.createElement("input");
+    inputDueDate.setAttribute("type", "date");
+    inputDueDate.setAttribute("name", "input-dueDate");
+    inputDueDate.value = task.dueDate;
+    divDueDate.appendChild(labelDueDate);
+    divDueDate.appendChild(inputDueDate);
+    editTaskForm.appendChild(divDueDate);
+
+    // priority entry
+    const divPriority = document.createElement("div");
+    divPriority.classList.add("form-input");
+    const labelPriority = document.createElement("label");
+    labelPriority.setAttribute("for", "select-priority");
+    labelPriority.textContent = "Priority:";
+    divPriority.appendChild(labelPriority);
+    const selectPriority = document.createElement("select");
+    selectPriority.setAttribute("name", "select-priority");
+    selectPriority.setAttribute("id", "select-priority");
+    /*TODO add placeholder for "select priority" that is optional and can
+submit null value in task creation (users do not have to assign a priority) 
+
+Use 'selected,' 'disabled', 'hidden' attributes in option tag */
+    Task.priorities.forEach((priority) => {
+      const option = document.createElement("option");
+      option.setAttribute("value", priority);
+      option.textContent = priority;
+      selectPriority.appendChild(option);
+    });
+    let prioIndex = Task.priorities.indexOf(task.priority);
+    selectPriority.selectedIndex = prioIndex;
+    divPriority.appendChild(selectPriority);
+    editTaskForm.appendChild(divPriority);
+
+    // submit button
+    const divBtnSubmit = document.createElement("div");
+    divBtnSubmit.classList.add("form-input");
+    const inputBtnSubmit = document.createElement("input");
+    inputBtnSubmit.setAttribute("type", "submit");
+    inputBtnSubmit.setAttribute("value", "Submit");
+    inputBtnSubmit.classList.add("btn", "submit-task");
+    divBtnSubmit.appendChild(inputBtnSubmit);
+    editTaskForm.appendChild(divBtnSubmit);
+
+    addSubmitListener();
+
+    // final append to content
+    content.appendChild(editTaskForm);
+    projectView.classList.toggle("form-entry");
+
+    function addSubmitListener() {
+      inputBtnSubmit.addEventListener("click", (e) => {
+        e.preventDefault();
+        // check for required inputs
+        // require task title
+        if (inputTitle.value == "") {
+          const labelRequiredField = document.createElement("label");
+          labelRequiredField.classList.add("error-label");
+          labelRequiredField.textContent =
+            "Please enter this field before submitting";
+          if (divTitle.lastChild.classList[0] != "error-label") {
+            divTitle.appendChild(labelRequiredField);
+            return;
+          }
+          return;
+        }
+        // store input values
+
+        task.title = inputTitle.value;
+        task.description = inputDescription.value;
+        task.dueDate = inputDueDate.value;
+        task.priority = selectPriority.value;
+        clearTasks();
+        showTasks(currentProject);
+        content.removeChild(editTaskForm);
+        projectView.classList.toggle("form-entry");
+      });
+    }
+  }
+
   function clearTasks() {
     let tasks = document.querySelectorAll(".task-container");
     tasks.forEach((task) => {
@@ -266,6 +384,7 @@ const dom = (() => {
     showTasks,
     showCreateTaskForm,
     showCreateProjectForm,
+    showEditTaskForm,
     clearTasks,
     showProject,
     refreshSidebarProjects,

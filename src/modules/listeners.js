@@ -39,6 +39,19 @@ const listeners = (() => {
     });
   }
 
+  function initEditTask(btn) {
+    btn.addEventListener("click", () => {
+      const taskContainer = btn.parentNode;
+      // index is subtracted by 2 to account for project title and add task button
+      // index variable is used to determine proper task to edit, i.e. project.getTask()[index]
+      const index =
+        Array.from(taskContainer.parentNode.children).indexOf(taskContainer) -
+        2;
+
+      dom.showEditTaskForm(index);
+    });
+  }
+
   function init() {
     _initAddTask();
     _initMenu();
@@ -46,7 +59,7 @@ const listeners = (() => {
     _initAddProject();
   }
 
-  return { init, initSidebarProject };
+  return { init, initSidebarProject, initEditTask };
 })();
 
 export default listeners;
