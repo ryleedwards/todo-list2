@@ -228,7 +228,7 @@ const dom = (() => {
         }
         const project = new Project(inputTitle.value);
         projects.push(project);
-        _showProject(project);
+        refreshSidebarProjects(projects);
         content.removeChild(addProjectForm);
         projectView.classList.toggle("form-entry");
       });
@@ -242,16 +242,27 @@ const dom = (() => {
     });
   }
 
+  function refreshSidebarProjects(projects) {
+    const listProjects = document.getElementById("project-list");
+    while (listProjects.firstChild) {
+      listProjects.removeChild(listProjects.firstChild);
+    }
+    projects.forEach((project) => {
+      const liProject = document.createElement("li");
+      liProject.classList.add("project");
+      liProject.innerText = project.name;
+      listProjects.appendChild(liProject);
+      listeners.initSidebarProject(liProject);
+    });
+  }
+
   function showProject(project) {
     if (!(project instanceof Project)) {
-      throw new Error("dom._showProject must be passed a Project object");
+      throw new Error("dom.showProject must be passed a Project object");
     }
-    const listProjects = document.getElementById("project-list");
-    const liProject = document.createElement("li");
-    liProject.classList.add("project");
-    liProject.innerText = project.name;
-    listProjects.appendChild(liProject);
-    listeners.initsidebarProject(liProject);
+    clearTasks();
+    projectTitle.innerText = project.name;
+    showTasks(project);
   }
 
   return {
@@ -260,6 +271,7 @@ const dom = (() => {
     showCreateProjectForm,
     clearTasks,
     showProject,
+    refreshSidebarProjects,
   };
 })();
 

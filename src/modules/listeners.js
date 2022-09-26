@@ -1,4 +1,5 @@
 import dom from "./dom";
+import { projects } from "../index";
 
 const listeners = (() => {
   function _initAddTask() {
@@ -29,9 +30,12 @@ const listeners = (() => {
     });
   }
 
-  function initsidebarProject(li) {
+  function initSidebarProject(li) {
     li.addEventListener("click", (e) => {
-      console.log(e.target);
+      const indexOfClickedListItem = Array.from(li.parentNode.children).indexOf(
+        li
+      );
+      dom.showProject(projects[indexOfClickedListItem]);
     });
   }
 
@@ -42,7 +46,7 @@ const listeners = (() => {
     _initAddProject();
   }
 
-  return { init, initsidebarProject };
+  return { init, initSidebarProject };
 })();
 
 export default listeners;
