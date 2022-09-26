@@ -1,6 +1,7 @@
 import { Task } from "./task";
 import { Project } from "./project";
 import { projects } from "../index";
+import listeners from "./listeners";
 
 const dom = (() => {
   let currentProject = "";
@@ -225,8 +226,9 @@ const dom = (() => {
           }
           return;
         }
-
-        projects.push(new Project(inputTitle.value));
+        const project = new Project(inputTitle.value);
+        projects.push(project);
+        _showProject(project);
         content.removeChild(addProjectForm);
         projectView.classList.toggle("form-entry");
       });
@@ -240,7 +242,25 @@ const dom = (() => {
     });
   }
 
-  return { showTasks, showCreateTaskForm, showCreateProjectForm, clearTasks };
+  function showProject(project) {
+    if (!(project instanceof Project)) {
+      throw new Error("dom._showProject must be passed a Project object");
+    }
+    const listProjects = document.getElementById("project-list");
+    const liProject = document.createElement("li");
+    liProject.classList.add("project");
+    liProject.innerText = project.name;
+    listProjects.appendChild(liProject);
+    listeners.initsidebarProject(liProject);
+  }
+
+  return {
+    showTasks,
+    showCreateTaskForm,
+    showCreateProjectForm,
+    clearTasks,
+    showProject,
+  };
 })();
 
 export default dom;

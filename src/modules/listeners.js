@@ -29,6 +29,12 @@ const listeners = (() => {
     });
   }
 
+  function initsidebarProject(li) {
+    li.addEventListener("click", (e) => {
+      console.log(e.target);
+    });
+  }
+
   function init() {
     _initAddTask();
     _initMenu();
@@ -36,7 +42,7 @@ const listeners = (() => {
     _initAddProject();
   }
 
-  return { init };
+  return { init, initsidebarProject };
 })();
 
 export default listeners;

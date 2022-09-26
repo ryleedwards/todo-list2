@@ -12,6 +12,7 @@ testProject.addTask(
   new Task("Test Task", "Test Description", "Test DueDate", "High")
 );
 
+dom.showProject(testProject);
 dom.showTasks(testProject);
 
 const btnTest = document.createElement("button");

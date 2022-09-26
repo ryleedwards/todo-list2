@@ -84,6 +84,17 @@ body {
   transition: 0.1s;
 }
 
+#project-list > li {
+  border-radius: 10000px;
+  padding: 8px;
+}
+
+#project-list > li:hover {
+  background-color: var(--primary-light);
+  color: var(--secondary-dark);
+  cursor: pointer;
+}
+
 /* Use content div to center */
 #content {
   display: flex;
