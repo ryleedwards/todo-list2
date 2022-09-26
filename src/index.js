@@ -22,3 +22,5 @@ topnav.appendChild(btnTest);
 btnTest.addEventListener("click", () => {
   dom.clearTasks();
 });
+
+export { projects };

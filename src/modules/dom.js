@@ -1,5 +1,6 @@
 import { Task } from "./task";
 import { Project } from "./project";
+import { projects } from "../index";
 
 const dom = (() => {
   let currentProject = "";
@@ -211,7 +212,23 @@ const dom = (() => {
     function addSubmitListener() {
       inputBtnSubmit.addEventListener("click", (e) => {
         e.preventDefault();
-        console.log(inputTitle.value);
+
+        //store new project
+        if (inputTitle.value == "") {
+          const labelRequiredField = document.createElement("label");
+          labelRequiredField.classList.add("error-label");
+          labelRequiredField.textContent =
+            "Please enter this field before submitting";
+          if (divTitle.lastChild.classList[0] != "error-label") {
+            divTitle.appendChild(labelRequiredField);
+            return;
+          }
+          return;
+        }
+
+        projects.push(new Project(inputTitle.value));
+        content.removeChild(addProjectForm);
+        projectView.classList.toggle("form-entry");
       });
     }
   }
