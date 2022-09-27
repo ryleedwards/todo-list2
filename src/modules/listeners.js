@@ -62,6 +62,16 @@ const listeners = (() => {
     });
   }
 
+  function initToggleTask(checkbox) {
+    checkbox.addEventListener("click", () => {
+      const taskContainer = checkbox.parentNode;
+      const taskIndex =
+        Array.from(taskContainer.parentNode.children).indexOf(taskContainer) -
+        2;
+      dom.toggleCompletion(taskIndex);
+    });
+  }
+
   function init() {
     _initAddTask();
     _initMenu();
@@ -69,7 +79,13 @@ const listeners = (() => {
     _initAddProject();
   }
 
-  return { init, initSidebarProject, initEditTask, initRemoveTask };
+  return {
+    init,
+    initSidebarProject,
+    initEditTask,
+    initRemoveTask,
+    initToggleTask,
+  };
 })();
 
 export default listeners;

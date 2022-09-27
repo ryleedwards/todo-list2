@@ -30,6 +30,7 @@ const dom = (() => {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.classList.add("task-complete");
+    listeners.initToggleTask(checkbox);
     //title
     const titleSpan = document.createElement("span");
     titleSpan.classList.add("task-title");
@@ -388,6 +389,10 @@ Use 'selected,' 'disabled', 'hidden' attributes in option tag */
     showTasks(project);
   }
 
+  function toggleCompletion(taskIndex) {
+    currentProject.getTasks()[taskIndex].toggleCompletion();
+  }
+
   return {
     showTasks,
     showCreateTaskForm,
@@ -397,6 +402,7 @@ Use 'selected,' 'disabled', 'hidden' attributes in option tag */
     showProject,
     refreshSidebarProjects,
     removeTask,
+    toggleCompletion,
   };
 })();
 
