@@ -13,13 +13,13 @@ listeners.init();
 
 const testProject = new Project("Test Project");
 testProject.addTask(
-  new Task("Test Task", "Test Description", "Test DueDate", "High")
+  new Task("Test Task", "Test Description", "2022-09-01", "High")
 );
 projects.push(testProject);
 
 const testProject2 = new Project("Test Project 2");
 testProject2.addTask(
-  new Task("Test Task 2", "Test Description 2", "Test DueDate 2", "High 2")
+  new Task("Test Task 2", "Test Description 2", "2022-10-02", "High")
 );
 projects.push(testProject2);
 

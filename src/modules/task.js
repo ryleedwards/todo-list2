@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export class Task {
   constructor(title, description, dueDate, priority) {
     this.title = title;
@@ -35,7 +37,14 @@ export class Task {
   }
 
   set dueDate(newDueDate) {
-    // TODO: FORMAT DATE
+    // validate and break if empty
+    if (newDueDate === "") return;
+    const arr = newDueDate.split("-");
+    const year = arr[0];
+    const month = arr[1] - 1;
+    const day = arr[2];
+    const date = new Date(year, month, day);
+    newDueDate = format(date, "MM/dd/yyyy");
     this._dueDate = newDueDate;
   }
 
