@@ -33,8 +33,6 @@ btnTest.innerText = "TEST";
 const topnav = document.querySelector(".top-nav");
 topnav.appendChild(btnTest);
 
-btnTest.addEventListener("click", () => {
-  dom.clearTasks();
-});
+btnTest.addEventListener("click", () => {});
 
 export { projects };

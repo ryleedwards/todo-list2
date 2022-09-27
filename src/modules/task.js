@@ -4,6 +4,7 @@ export class Task {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.completion = false;
   }
 
   static priorities = ["High", "Medium", "Low"];
@@ -45,5 +46,19 @@ export class Task {
   set priority(newPriority) {
     // TODO: Potential need for validation on priority?
     this._priority = newPriority;
+  }
+
+  get completion() {
+    return this._completion;
+  }
+
+  set completion(bool) {
+    if (typeof bool == "boolean") {
+      this._completion = bool;
+    }
+  }
+
+  toggleCompletion() {
+    this.completion = !this.completion;
   }
 }
