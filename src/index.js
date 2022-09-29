@@ -2,6 +2,7 @@ import dom from "./modules/dom";
 import listeners from "./modules/listeners";
 import { Project } from "./modules/project";
 import { Task } from "./modules/task";
+import storage from "./modules/storage";
 
 let projects = [];
 
@@ -33,6 +34,9 @@ btnTest.innerText = "TEST";
 const topnav = document.querySelector(".top-nav");
 topnav.appendChild(btnTest);
 
-btnTest.addEventListener("click", () => {});
+btnTest.addEventListener("click", () => {
+  console.log(projects[0].getTasks()[0]);
+  storage.storeTask(projects[0].getTasks()[0]);
+});
 
 export { projects };
