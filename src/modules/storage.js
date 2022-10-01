@@ -1,4 +1,5 @@
 import { Task } from "./task";
+import { Project } from "./project";
 
 const storage = (() => {
   function storageAvailable(type) {
@@ -28,12 +29,38 @@ const storage = (() => {
     }
   }
 
+  function clear() {}
+
+  function createProjects() {
+    if (!window.localStorage.getItem("projects")) {
+      let projects = [];
+      window.localStorage.setItem("projects", JSON.stringify(projects));
+      createDefaultProject();
+    }
+  }
+
+  function createDefaultProject() {
+    const defaultProject = new Project("Default");
+    let projects = JSON.parse(window.localStorage.getItem("projects"));
+    projects.push(defaultProject);
+    window.localStorage.setItem("projects", JSON.stringify(projects));
+  }
+
+  function getProjects() {
+    if (window.localStorage.getItem("projects")) {
+      return JSON.parse(window.localStorage.getItem("projects"));
+    }
+  }
+
+  function storeProject(project) {}
+
   function storeTask(task) {
     if (!storageAvailable("localStorage")) return;
     const taskString = JSON.stringify(task);
     window.localStorage.setItem("task", taskString);
-    console.log(taskString);
-    //
+  }
+
+  function getTask() {
     const returnedTaskJSONObj = JSON.parse(window.localStorage.getItem("task"));
     const title = returnedTaskJSONObj._title;
     const description = returnedTaskJSONObj._description;
@@ -48,12 +75,16 @@ const storage = (() => {
       priority,
       completion
     );
-    console.log(returnedTask);
   }
 
-  function retrieveTask() {}
-
-  return { storageAvailable, storeTask, retrieveTask };
+  return {
+    storageAvailable,
+    clear,
+    createProjects,
+    getProjects,
+    storeTask,
+    getTask,
+  };
 })();
 
 export default storage;

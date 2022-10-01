@@ -1,7 +1,7 @@
 import { Task } from "./task";
 import { Project } from "./project";
-import { projects } from "../index";
 import listeners from "./listeners";
+import storage from "./storage";
 
 const dom = (() => {
   let currentProject = "";

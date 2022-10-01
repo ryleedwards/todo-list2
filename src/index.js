@@ -4,14 +4,10 @@ import { Project } from "./modules/project";
 import { Task } from "./modules/task";
 import storage from "./modules/storage";
 
-let projects = [];
-
-dom.refreshSidebarProjects(projects);
-
 listeners.init();
 
 // BEGIN LOADING TEST CASES
-
+/*
 const testProject = new Project("Test Project");
 testProject.addTask(
   new Task("Test Task", "Test Description", "2022-09-01", "High")
@@ -23,20 +19,23 @@ testProject2.addTask(
   new Task("Test Task 2", "Test Description 2", "2022-10-02", "High")
 );
 projects.push(testProject2);
-
+*/
 // END LOADING TEST CASES
 
+/*
 dom.showProject(testProject);
 dom.refreshSidebarProjects(projects);
+*/
 
 const btnTest = document.createElement("button");
 btnTest.innerText = "TEST";
 const topnav = document.querySelector(".top-nav");
 topnav.appendChild(btnTest);
 
+storage.createProjects();
+
 btnTest.addEventListener("click", () => {
-  console.log(projects[0].getTasks()[0]);
-  storage.storeTask(projects[0].getTasks()[0]);
+  storage.clear();
 });
 
-export { projects };
+export {};

@@ -1,5 +1,4 @@
 import dom from "./dom";
-import { projects } from "../index";
 
 const listeners = (() => {
   function _initAddTask() {

@@ -38,7 +38,6 @@ export class Task {
 
   set dueDate(newDueDate) {
     // validate and break if empty
-    console.log(newDueDate);
     if (newDueDate === "") return;
     if (newDueDate.charAt(2) == "/") {
       const arr = newDueDate.split("/");
